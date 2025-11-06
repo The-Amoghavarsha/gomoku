@@ -197,6 +197,29 @@ body {
   background: #4a6572;
 }
 
+/* Mobile square styles */
+.mobile-square:hover {
+  transform: none !important;
+  background: inherit !important;
+}
+
+.mobile-square:active {
+  background: #e6c9a0 !important;
+  transform: scale(0.95) !important;
+}
+
+.modern .mobile-square:active {
+  background: #d4e8f0 !important;
+}
+
+.nature .mobile-square:active {
+  background: #d4e8d4 !important;
+}
+
+.dark .mobile-square:active {
+  background: #4a6572 !important;
+}
+
 .winning-square {
   background-color: #90ee90 !important;
   animation: pulse 1s infinite;
@@ -450,6 +473,12 @@ body {
     max-width: 100%;
     width: 100%;
     max-height: none;
+    order: 2;
+  }
+  
+  .game-board-container {
+    order: 1;
+    width: 100%;
   }
   
   .moves-list {
@@ -459,6 +488,7 @@ body {
   .settings-panel {
     flex-direction: column;
     gap: 20px;
+    padding: 15px;
   }
 }
 
@@ -469,59 +499,200 @@ body {
   
   .game-content {
     padding: 10px;
+    gap: 15px;
   }
   
   .status {
     font-size: 20px;
     padding: 10px 16px;
+    margin-bottom: 10px;
   }
   
+  /* Mobile-optimized square sizes */
   .square {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    font-size: 18px;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    font-size: 14px;
   }
   
   .game.board-9x9 .square {
-    height: 38px;
-    width: 38px;
-    line-height: 38px;
-    font-size: 20px;
-  }
-  
-  .game.board-13x13 .square {
     height: 32px;
     width: 32px;
     line-height: 32px;
-    font-size: 18px;
+    font-size: 16px;
   }
-}
-
-@media (max-width: 480px) {
-  .status {
-    font-size: 18px;
-    padding: 8px 12px;
+  
+  .game.board-13x13 .square {
+    height: 26px;
+    width: 26px;
+    line-height: 26px;
+    font-size: 14px;
+  }
+  
+  .game.board-15x15 .square {
+    height: 22px;
+    width: 22px;
+    line-height: 22px;
+    font-size: 12px;
+  }
+  
+  .board {
+    padding: 4px;
+    border-width: 2px;
+  }
+  
+  .game-info {
+    padding: 15px;
   }
   
   .game-controls {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 10px;
   }
   
   .restart-button,
   .sort-button {
     padding: 10px 14px;
     font-size: 14px;
+    flex: 1;
   }
   
-  .size-buttons,
-  .theme-buttons {
-    justify-content: center;
+  .moves-header {
+    font-size: 14px;
+  }
+  
+  .move-button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+  
+  .game-content {
+    padding: 5px;
+    gap: 10px;
+  }
+  
+  .settings-panel {
+    padding: 12px;
+    margin-bottom: 15px;
+    gap: 15px;
+  }
+  
+  .setting-group label {
+    font-size: 13px;
   }
   
   .size-button,
   .theme-button {
-    padding: 8px 16px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .status {
+    font-size: 18px;
+    padding: 8px 12px;
+  }
+  
+  /* Extra small screens */
+  .square {
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    font-size: 12px;
+  }
+  
+  .game.board-9x9 .square {
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+    font-size: 14px;
+  }
+  
+  .game.board-13x13 .square {
+    height: 22px;
+    width: 22px;
+    line-height: 22px;
+    font-size: 12px;
+  }
+  
+  .game.board-15x15 .square {
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    font-size: 10px;
+  }
+  
+  .board {
+    padding: 3px;
+  }
+  
+  .game-info {
+    padding: 12px;
+  }
+  
+  .restart-button,
+  .sort-button {
+    padding: 8px 12px;
     font-size: 13px;
+  }
+  
+  .moves-section {
+    min-height: 150px;
+  }
+  
+  .moves-list {
+    max-height: 150px;
+  }
+}
+
+/* Very small screens (iPhone SE etc) */
+@media (max-width: 375px) {
+  .square {
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    font-size: 11px;
+  }
+  
+  .game.board-9x9 .square {
+    height: 26px;
+    width: 26px;
+    line-height: 26px;
+    font-size: 13px;
+  }
+  
+  .game.board-13x13 .square {
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    font-size: 11px;
+  }
+  
+  .game.board-15x15 .square {
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    font-size: 9px;
+  }
+  
+  .settings-panel {
+    padding: 10px;
+  }
+  
+  .size-buttons,
+  .theme-buttons {
+    gap: 5px;
+  }
+  
+  .size-button,
+  .theme-button {
+    padding: 6px 10px;
+    font-size: 11px;
   }
 }

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
-function Square({ value, onSquareClick, isWinning }) {
+function Square({ value, onSquareClick, isWinning, isMobile }) {
   return (
     <button 
-      className={`square ${isWinning ? 'winning-square' : ''}`} 
+      className={`square ${isWinning ? 'winning-square' : ''} ${isMobile ? 'mobile-square' : ''}`} 
       onClick={onSquareClick}
     >
       {value}
@@ -13,6 +13,18 @@ function Square({ value, onSquareClick, isWinning }) {
 }
 
 function Board({ xIsNext, squares, onPlay, winningLine, boardSize }) {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   function handleClick(i) {
     if (calculateWinner(squares, boardSize) || squares[i]) {
       return;
@@ -30,6 +42,7 @@ function Board({ xIsNext, squares, onPlay, winningLine, boardSize }) {
         value={squares[i]}
         onSquareClick={() => handleClick(i)}
         isWinning={isWinning}
+        isMobile={isMobile}
       />
     );
   };
